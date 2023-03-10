@@ -1,0 +1,42 @@
+:root {
+  --header-hight: calc(48px * 3);
+  --footer-hight: 48px;
+}
+
+.container {
+  width: var(--page-width);
+  height: 100vh;
+  background-color: #fff;
+  color: white;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  justify-content: stretch;
+  align-items: stretch;
+  height: var(--header-hight);
+}
+
+.main {
+  height: calc(100vh - var(--header-hight) - var(--footer-hight));
+  background-color: white;
+  overflow: auto;
+}
+
+.footer {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: var(--footer-hight);
+  background-color: #2a2e45;
+  font-size: calc(var(--page-font-size) * 1);
+  width: inherit;
+  width: 100%;
+}

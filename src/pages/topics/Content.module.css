@@ -1,0 +1,45 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0px 0px;
+  align-content: stretch;
+  justify-content: stretch;
+  align-items: stretch;
+  justify-items: stretch;
+  align-self: stretch;
+  justify-self: stretch;
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  height: 100%;
+  overflow: auto;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #274690;
+  font-size: calc(var(--page-font-size) * 2);
+  padding: 10px;
+}
+
+.description {
+  background-color: #576ca8;
+  font-size: calc(var(--page-font-size) * 1.5);
+  padding: 10px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #302b27;
+  font-size: calc(var(--page-font-size) * 1);
+  padding: 10px;
+}

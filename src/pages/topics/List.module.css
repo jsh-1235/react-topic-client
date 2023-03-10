@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: stretch;
+  align-items: stretch;
+  align-self: stretch;
+  justify-self: stretch;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 1;
+  background-color: #2a2e45;
+  list-style-type: none;
+  overflow: auto;
+  min-width: 120px;
+}
+
+.container>li {
+  background-color: #5d707f;
+  margin: 10px;
+}
+
+.container>li>a {
+  display: block;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  padding: 10px;
+}
+
+.container>li>a:hover {
+  background-color: var(--theme-component-hover);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+.container>li>a:active {
+  background-color: var(--theme-component-active);
+}

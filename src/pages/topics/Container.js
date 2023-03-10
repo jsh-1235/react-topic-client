@@ -18,13 +18,17 @@ export default function Container() {
 
   const { screen } = useSelector((state) => state.screen);
   const [width, setWidth] = useState("100px");
+  const [fontSize, setFontSize] = useState("1rem");
 
   const { topics } = useSelector((state) => state.topics);
 
   const dispatch = useDispatch();
 
+  const [mode, setMode] = useState(0);
+
   useEffect(() => {
     dispatch(ready());
+    setMode(0);
   }, [dispatch]);
 
   useEffect(() => {
@@ -32,7 +36,8 @@ export default function Container() {
   }, [topics]);
 
   useEffect(() => {
-    setWidth(screen.isMobile ? "64px" : "100px");
+    setWidth(screen.isMobile ? "48px" : "100px");
+    setFontSize(screen.isMobile ? "0.5rem" : "1rem");
   }, [screen]);
 
   useEffect(() => {
@@ -40,16 +45,20 @@ export default function Container() {
   }, [state]);
 
   const handleClick = (e) => {
-    // console.log(e.target.name, topics.current);
+    console.log(e.target.name, topics.current);
 
     if (e.target.name === "back") {
+      setMode(0);
       navigate(-1);
     } else if (e.target.name === "create") {
+      setMode(1);
       navigate("/topics/create");
     } else if (e.target.name === "update") {
-      navigate(`/topics/update/?id=${topics.current}`);
+      setMode(2);
+      topics.current && navigate(`/topics/update/?id=${topics.current}`);
     } else if (e.target.name === "remove") {
-      if (topics.current !== -1) dispatch(remove(topics.current));
+      setMode(3);
+      topics.current && topics.current !== -1 && dispatch(remove(topics.current));
     }
   };
 
@@ -57,18 +66,24 @@ export default function Container() {
     <div className={styles.container}>
       <List />
       <div className={styles.menu}>
-        <Button name="back" width={width} margin={"0 1px 0 0"} onClick={handleClick}>
+        <Button name="back" width={width} fontSize={fontSize} margin={"0 1px 0 0"} onClick={handleClick}>
           back
         </Button>
-        <Button name="remove" width={width} margin={"0 1px 0 0"} onClick={handleClick}>
-          remove
-        </Button>
-        <Button name="update" width={width} margin={"0 0 0 0"} onClick={handleClick}>
-          update
-        </Button>
-        <Button name="create" width={width} margin={"0 0 0 0"} onClick={handleClick}>
-          create
-        </Button>
+        {mode === 0 && (
+          <Button name="remove" width={width} fontSize={fontSize} margin={"0 1px 0 0"} onClick={handleClick}>
+            remove
+          </Button>
+        )}
+        {mode === 0 && (
+          <Button name="update" width={width} fontSize={fontSize} margin={"0 1px 0 0"} onClick={handleClick}>
+            update
+          </Button>
+        )}
+        {mode === 0 && (
+          <Button name="create" width={width} fontSize={fontSize} margin={"0 0 0 0"} onClick={handleClick}>
+            create
+          </Button>
+        )}
       </div>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>

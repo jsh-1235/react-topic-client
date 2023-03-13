@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setURL } from "../store/slices/routerSlice";
+import { setExtend } from "../store/slices/screenSlice";
 
 import Linker from "./Linker";
 import Menu from "./Menu";
@@ -19,6 +20,8 @@ export default function Header() {
   const navigate = useNavigate();
 
   const { url } = useSelector((state) => state.router);
+  const { screen } = useSelector((state) => state.screen);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,12 +34,20 @@ export default function Header() {
     }
   }, [dispatch, location.pathname]);
 
+  const handleExtend = (e) => {
+    // navigate("/");
+
+    dispatch(setExtend({ ...screen, extended: !screen.extended }));
+
+    console.log(screen);
+  };
+
   return (
     <>
       <div className={styles.container}>
         <div>
           <ImageButton color={"white"} fontSize={"1.5rem"}>
-            <AiOutlineMenu onClick={(e) => navigate("/")} />
+            <AiOutlineMenu onClick={(e) => handleExtend()} />
           </ImageButton>
         </div>
         <div>

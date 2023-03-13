@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   screen: {
     isMobile: false,
+    extended: false,
   },
 };
 
@@ -13,9 +14,12 @@ export const screenSlice = createSlice({
     setScreen: (state, action) => {
       state.screen = action.payload;
     },
+    setExtend: (state, action) => {
+      state.screen = action.payload;
+    },
   },
 });
 
-export const { setScreen } = screenSlice.actions;
+export const { setScreen, setExtend } = screenSlice.actions;
 
 export default screenSlice;

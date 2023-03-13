@@ -1,11 +1,10 @@
 import styles from "./Updater.module.css";
+
 import React, { useRef, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { update } from "../../store/slices/topicSlice";
-
-import { useSelector } from "react-redux";
 
 import Input from "../../components/Input";
 import Textarea from "../../components/Textarea";
@@ -56,13 +55,7 @@ export default function Updater() {
       date: new Date().toLocaleString(),
     };
 
-    console.log(content);
-
-    dispatch(
-      update({
-        content,
-      })
-    );
+    dispatch(update({ content }));
 
     navigate(`/topics/${content.id}`, {
       replace: false,
@@ -75,8 +68,8 @@ export default function Updater() {
 
   return (
     <div className={styles.container}>
-      <form action="/create" method="post" onSubmit={handleSubmit}>
-        <Input ref={titleRef} className={styles.input} type="text" name="title" margin={"10px"} placeholder="title" />
+      <form action="/update" method="post" onSubmit={handleSubmit}>
+        <Input ref={titleRef} className={styles.input} type="text" name="title" margin={"10px"} placeholder="title" required />
         <Textarea ref={descriptionRef} className={styles.textarea} name="description" margin={"10px"} placeholder="description"></Textarea>
         <Button name="create" margin={"10px"} type="submit">
           create

@@ -15,7 +15,7 @@ const CONTAINER = styled.input`
 
   @media (hover: hover) {
     &:hover {
-      outline: 1px solid var(--theme-component-hover);
+      outline: 3px solid var(--theme-component-hover);
     }
   }
 
@@ -39,7 +39,7 @@ const CONTAINER = styled.input`
 `;
 
 function Input(props, ref) {
-  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} onClick={props.onClick} />;
+  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} onClick={props.onClick} />;
 }
 
 export default forwardRef(Input);

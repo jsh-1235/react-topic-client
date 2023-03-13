@@ -7,9 +7,9 @@
   --page-font-min-size: 4px;
   --page-font-max-size: 16px;
   --page-font-size: var(--page-font-max-size);
-  --theme-component-color: #1f7a8c;
-  --theme-component-hover: #ffd400;
-  --theme-component-active: #ed6a5a;
+  --theme-component-color: #8093f1;
+  --theme-component-hover: #ff6f59;
+  --theme-component-active: #d90368;
   --theme-component-selected: #d90368;
   --theme-component-disabled: #607d8b;
   --theme-component-text-disabled: #607d8b;

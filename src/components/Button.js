@@ -12,7 +12,7 @@ const CONTAINER = styled.button`
   color: white;
   font-size: ${(props) => props.fontSize || "inherit"};
   text-transform: uppercase;
-  padding: ${(props) => props.padding || "0.5rem"};
+  padding: ${(props) => props.padding || "inherit"};
   margin: ${(props) => props.margin || "inherit"};
 
   @media (hover: hover) {
@@ -28,6 +28,10 @@ const CONTAINER = styled.button`
     background-color: var(--theme-component-active);
     transition-property: background-color;
     transition-duration: 0.5s;
+  }
+
+  &:focus {
+    outline: 3px solid var(--theme-component-active);
   }
 
   &:disabled {

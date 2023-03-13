@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 
-const CONTAINER = styled.span`
+const CONTAINER = styled.div`
   svg * {
     &:hover {
       color: var(--theme-component-hover);

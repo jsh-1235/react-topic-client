@@ -28,6 +28,11 @@ const LINKER = styled.div`
     &:active {
       color: inherit;
     }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
 `;
 

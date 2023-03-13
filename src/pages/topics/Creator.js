@@ -22,8 +22,6 @@ export default function Creator() {
 
   useEffect(() => {
     titleRef.current.focus();
-
-    console.log(titleRef);
   }, []);
 
   const handleSubmit = (e) => {
@@ -44,13 +42,7 @@ export default function Creator() {
       date: new Date().toLocaleString(),
     };
 
-    console.log(content);
-
-    dispatch(
-      create({
-        content,
-      })
-    );
+    dispatch(create({ content }));
 
     navigate(`/topics/${content.id}`, {
       replace: false,
@@ -64,7 +56,7 @@ export default function Creator() {
   return (
     <div className={styles.container}>
       <form action="/create" method="post" onSubmit={handleSubmit}>
-        <Input ref={titleRef} className={styles.input} type="text" name="title" margin={"10px"} placeholder="title" />
+        <Input ref={titleRef} className={styles.input} type="text" name="title" margin={"10px"} placeholder="title" required />
         <Textarea ref={descriptionRef} className={styles.textarea} name="description" margin={"10px"} placeholder="description"></Textarea>
         <Button name="create" margin={"10px"} type="submit">
           create

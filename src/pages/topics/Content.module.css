@@ -8,9 +8,7 @@
   justify-items: stretch;
   align-self: stretch;
   justify-self: stretch;
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  height: 100%;
+  height: inherit;
   overflow: auto;
 }
 

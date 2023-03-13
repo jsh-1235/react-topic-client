@@ -17,10 +17,7 @@ const CONTAINER = styled.button`
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--theme-component-hover);
       cursor: pointer;
-      transition-property: background-color, cursor;
-      transition-duration: 0.5s;
     }
   }
 
@@ -31,7 +28,7 @@ const CONTAINER = styled.button`
   }
 
   &:focus {
-    outline: 3px solid var(--theme-component-active);
+    outline: 0px solid var(--theme-component-active);
   }
 
   &:disabled {

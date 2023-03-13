@@ -9,9 +9,9 @@ import { setExtend } from "../store/slices/screenSlice";
 
 import Linker from "./Linker";
 import Menu from "./Menu";
-import ImageButton from "./ImageButton";
+import IconButton from "./IconButton";
 
-import { AiOutlineLogin, AiOutlineMenu, AiOutlineCodeSandbox } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineMenu, AiFillCaretDown } from "react-icons/ai";
 
 const urls = ["topics", "settings", "about"];
 
@@ -46,21 +46,21 @@ export default function Header() {
     <>
       <div className={styles.container}>
         <div>
-          <ImageButton color={"white"} fontSize={"1.5rem"}>
-            <AiOutlineMenu onClick={(e) => handleExtend()} />
-          </ImageButton>
+          <IconButton color={"white"} fontSize={"1.5rem"}>
+            {!screen.extended ? <AiOutlineMenu onClick={(e) => handleExtend()} /> : <AiFillCaretDown onClick={(e) => handleExtend()} />}
+          </IconButton>
         </div>
         <div>
           <Linker url="/" size={1.5}>
-            <AiOutlineCodeSandbox className={styles.icon} />
+            {/* <AiOutlineCodeSandbox className={styles.icon} /> */}
             {url.title}
           </Linker>
         </div>
         <div>
           <span>jsh</span>
-          <ImageButton color={"white"} fontSize={"1.5rem"}>
+          <IconButton color={"white"} fontSize={"1.5rem"}>
             <AiOutlineLogin />
-          </ImageButton>
+          </IconButton>
         </div>
       </div>
       <Menu urls={urls} />

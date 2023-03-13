@@ -26,7 +26,7 @@ export const topicSlice = createSlice({
   name: "topics",
   initialState,
   reducers: {
-    ready: (state, action) => {
+    load: (state, action) => {
       if (JSON.parse(localStorage.getItem("topics")) === null) {
         localStorage.setItem("topics", JSON.stringify([]));
       } else {
@@ -39,14 +39,14 @@ export const topicSlice = createSlice({
     create: (state, action) => {
       console.log(action.type, action.payload);
 
-      const contents = [...state.topics.contents, action.payload.content];
+      state.topics = {
+        mode: Type.CREATE,
+        current: action.payload.content.id,
+        content: action.payload.content,
+        contents: [...state.topics.contents, action.payload.content],
+      };
 
-      state.topics.mode = Type.CREATE;
-      state.topics.current = action.payload.content.id;
-      state.topics.content = action.payload.content;
-      state.topics.contents = contents;
-
-      localStorage.setItem("topics", JSON.stringify(contents));
+      localStorage.setItem("topics", JSON.stringify(state.topics.contents));
     },
     read: (state, action) => {
       console.log(action.type, action.payload);
@@ -64,43 +64,36 @@ export const topicSlice = createSlice({
     update: (state, action) => {
       console.log(action.type, action.payload);
 
-      const contents = state.topics.contents.map((content) => {
-        if (content.id === action.payload.content.id) {
-          return action.payload.content;
-        } else {
-          return content;
-        }
-      });
-
-      console.log(contents);
-
       state.topics = {
         mode: Type.UPDATE,
         current: action.payload.id,
         content: action.payload.content,
-        contents: contents,
+        contents: state.topics.contents.map((content) => {
+          if (content.id === action.payload.content.id) {
+            return action.payload.content;
+          } else {
+            return content;
+          }
+        }),
       };
 
-      localStorage.setItem("topics", JSON.stringify(contents));
+      localStorage.setItem("topics", JSON.stringify(state.topics.contents));
     },
     remove: (state, action) => {
       console.log(action.type, action.payload);
 
-      const contents = state.topics.contents.filter((content) => content.id !== action.payload);
-
       state.topics = {
-        ...state.topics,
         mode: Type.REMOVE,
         current: initialState.topics.current,
         content: initialState.topics.content,
-        contents: contents,
+        contents: state.topics.contents.filter((content) => content.id !== action.payload),
       };
 
-      localStorage.setItem("topics", JSON.stringify(contents));
+      localStorage.setItem("topics", JSON.stringify(state.topics.contents));
     },
   },
 });
 
-export const { ready, create, read, update, remove } = topicSlice.actions;
+export const { load, create, read, update, remove } = topicSlice.actions;
 
 export default topicSlice;

@@ -7,13 +7,13 @@
   justify-content: stretch;
   align-items: stretch;
   /* min-width: 120px; */
-  width: 200px;
+  width: 120px;
   background-color: #2a2e45;
   opacity: 1;
   overflow: auto;
   list-style-type: none;
   transition-property: width, opacity;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 }
 
 .extended {
@@ -31,16 +31,26 @@
   display: block;
   width: inherit;
   height: inherit;
+  font-size: 1rem;
   text-align: center;
   padding: 10px;
 }
 
-.container>li>a:hover {
-  background-color: var(--theme-component-hover);
-  transition-property: background-color;
-  transition-duration: 0.5s;
+@media (hover: hover) {
+  .container>li>a:hover {
+    background-color: var(--theme-component-hover);
+    transition-property: background-color;
+    transition-duration: 0.5s;
+  }
 }
 
-.container>li>a:active {
+/* .container>li>a:active {
   background-color: var(--theme-component-active);
+} */
+
+@media (max-width: 720px) {
+
+  .container>li>a {
+    font-size: 0.5rem;
+  }
 }

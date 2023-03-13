@@ -4,20 +4,22 @@ import React, { useState, useEffect, Suspense } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { Type, ready, remove } from "../../store/slices/topicSlice";
+import { load, remove } from "../../store/slices/topicSlice";
 
 import List from "./List";
 import Creator from "./Creator";
 import Updater from "./Updater";
 import Content from "./Content";
-import Button from "../../components/Button";
+import ImageButton from "../../components/ImageButton";
+
+import { AiOutlineArrowLeft, AiFillPlusCircle, AiFillMinusCircle, AiFillEdit } from "react-icons/ai";
 
 export default function Container() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const { screen } = useSelector((state) => state.screen);
-  const [width, setWidth] = useState("100px");
+  const [color, setColor] = useState("red");
   const [fontSize, setFontSize] = useState("1rem");
 
   const { topics } = useSelector((state) => state.topics);
@@ -25,7 +27,7 @@ export default function Container() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(ready());
+    dispatch(load());
   }, [dispatch]);
 
   useEffect(() => {
@@ -33,24 +35,24 @@ export default function Container() {
   }, [topics]);
 
   useEffect(() => {
-    setWidth(screen.isMobile ? "48px" : "100px");
-    setFontSize(screen.isMobile ? "0.5rem" : "1rem");
+    setFontSize(screen.isMobile ? "1.5rem" : "2rem");
+    setColor(screen.isMobile ? getComputedStyle(document.documentElement).getPropertyValue("--theme-component-color") : "white");
   }, [screen]);
 
   useEffect(() => {
     console.log("state", state);
   }, [state]);
 
-  const handleClick = (e) => {
-    console.log(e.target.name, topics.current);
+  const handleClick = (name, e) => {
+    console.log(name, e.target.parentElement, topics.current);
 
-    if (e.target.name === "back") {
+    if (name === "back") {
       navigate(-1);
-    } else if (e.target.name === "create") {
+    } else if (name === "create") {
       navigate("/topics/create");
-    } else if (e.target.name === "update") {
+    } else if (name === "update") {
       topics.current && navigate(`/topics/update/?id=${topics.current}`);
-    } else if (e.target.name === "remove") {
+    } else if (name === "remove") {
       topics.current && topics.current !== -1 && dispatch(remove(topics.current));
 
       navigate("/topics");
@@ -62,23 +64,23 @@ export default function Container() {
       <List />
       <div className={styles.content}>
         <div className={styles.menu}>
-          <Button name="back" width={width} fontSize={fontSize} margin={"0 5px 0 0"} onClick={handleClick}>
-            back
-          </Button>
-          {topics.current !== undefined && (
-            <Button name="remove" width={width} fontSize={fontSize} margin={"0 5px 0 0"} onClick={handleClick}>
-              remove
-            </Button>
-          )}
-          {topics.current !== undefined && (
-            <Button name="update" width={width} fontSize={fontSize} margin={"0 5px 0 0"} onClick={handleClick}>
-              update
-            </Button>
-          )}
+          <ImageButton name="back" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "back")}>
+            <AiOutlineArrowLeft />
+          </ImageButton>
           {topics.mode === "read" && (
-            <Button name="create" width={width} fontSize={fontSize} margin={"0 0 0 0"} onClick={handleClick}>
-              create
-            </Button>
+            <ImageButton name="create" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "create")}>
+              <AiFillPlusCircle />
+            </ImageButton>
+          )}
+          {topics.current !== undefined && (
+            <ImageButton name="update" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "update")}>
+              <AiFillEdit />
+            </ImageButton>
+          )}
+          {topics.current !== undefined && (
+            <ImageButton name="remove" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "remove")}>
+              <AiFillMinusCircle />
+            </ImageButton>
           )}
         </div>
         <Suspense fallback={<div>Loading...</div>}>

@@ -9,6 +9,7 @@ const LINKER = styled.div`
     return props.color || "inhreit";
   }};
   transition-property: background-color;
+  transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
 
   font-size: calc(var(--page-font-max-size) * ${(props) => props.size || 1});
@@ -20,7 +21,7 @@ const LINKER = styled.div`
     color: inherit;
 
     &:hover {
-      color: var(--theme-component-hover);
+      color: inherit;
       transition-property: color;
       transition-duration: 0.5s;
     }

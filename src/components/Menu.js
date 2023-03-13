@@ -16,6 +16,8 @@ const MENU = styled.ul`
   list-style-type: none;
 
   li {
+    width: 100%;
+    text-align: center;
     padding: 0px;
     margin: 0px;
   }

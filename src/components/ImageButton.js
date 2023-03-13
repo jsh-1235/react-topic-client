@@ -4,25 +4,27 @@ import styled from "styled-components";
 import { IconContext } from "react-icons";
 
 const CONTAINER = styled.div`
-  svg * {
+  &:hover {
+    cursor: pointer;
+  }
+
+  & svg * {
+    color: inherit;
+
     &:hover {
-      color: var(--theme-component-hover);
-      transition-property: color;
-      transition-duration: 0.5s;
+      cursor: pointer;
     }
 
     &:active {
-      color: var(--theme-component-active);
+      color: inherit;
     }
   }
 `;
 
-export default function ImageButton({ color, fontSize, children }) {
+export default function ImageButton({ name, color, fontSize, onClick, children }) {
   return (
-    <CONTAINER>
-      <IconContext.Provider className="image" value={{ style: { color, fontSize, verticalAlign: "middle" } }}>
-        {children}
-      </IconContext.Provider>
+    <CONTAINER name={name} onClick={onClick}>
+      <IconContext.Provider value={{ style: { color, fontSize, verticalAlign: "middle" } }}>{children}</IconContext.Provider>
     </CONTAINER>
   );
 }

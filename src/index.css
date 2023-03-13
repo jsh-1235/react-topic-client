@@ -11,8 +11,9 @@
   --theme-component-hover: #ff6f59;
   --theme-component-active: #d90368;
   --theme-component-selected: #d90368;
-  --theme-component-disabled: #607d8b;
-  --theme-component-text-disabled: #607d8b;
+  --theme-component-disabled: #aaa;
+  --theme-component-text-disabled: #aaa;
+  --theme-accent-text-disabled: white;
 }
 
 * {

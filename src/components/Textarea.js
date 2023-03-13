@@ -44,7 +44,7 @@ const CONTAINER = styled.textarea`
 
 function Textarea({ children, ...props }, ref) {
   return (
-    <CONTAINER ref={ref} name={props.name} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} onClick={props.onClick}>
+    <CONTAINER ref={ref} name={props.name} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} disabled={props.disabled} onClick={props.onClick}>
       {children}
     </CONTAINER>
   );

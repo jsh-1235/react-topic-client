@@ -43,7 +43,7 @@ const CONTAINER = styled.input`
 `;
 
 function Input(props, ref) {
-  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} onClick={props.onClick} />;
+  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} disabled={props.disabled} onClick={props.onClick} />;
 }
 
 export default forwardRef(Input);

@@ -23,7 +23,7 @@
 .menu {
   display: grid;
   grid-template-columns: 1fr auto auto auto;
-  gap: 0px 5px;
+  gap: 0px 25px;
   align-content: center;
   justify-content: center;
   align-items: center;

@@ -43,7 +43,7 @@ const CONTAINER = styled.button`
 
 export default function Button({ children, ...props }) {
   return (
-    <CONTAINER name={props.name} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} onClick={props.onClick}>
+    <CONTAINER name={props.name} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} disabled={props.disabled} onClick={props.onClick}>
       {children}
     </CONTAINER>
   );

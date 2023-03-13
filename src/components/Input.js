@@ -13,6 +13,10 @@ const CONTAINER = styled.input`
   padding: ${(props) => props.padding || "0.5rem"};
   margin: ${(props) => props.margin || "inherit"};
 
+  @media (max-width: 1280px) {
+    font-size: var(--page-font-size);
+  }
+
   @media (hover: hover) {
     &:hover {
       outline: 3px solid var(--theme-component-hover);

@@ -15,6 +15,10 @@ const CONTAINER = styled.button`
   padding: ${(props) => props.padding || "inherit"};
   margin: ${(props) => props.margin || "inherit"};
 
+  @media (max-width: 1280px) {
+    font-size: var(--page-font-size);
+  }
+
   @media (hover: hover) {
     &:hover {
       cursor: pointer;

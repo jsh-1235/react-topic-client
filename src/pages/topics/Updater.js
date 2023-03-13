@@ -29,8 +29,8 @@ export default function Updater() {
 
     const content = topics.contents.find((content) => content.id === id);
 
-    titleRef.current.value = content.title;
-    descriptionRef.current.value = content.description;
+    titleRef.current.value = content?.title;
+    descriptionRef.current.value = content?.description;
 
     console.log();
   }, [searchParams, topics.contents]);
@@ -71,8 +71,8 @@ export default function Updater() {
       <form action="/update" method="post" onSubmit={handleSubmit}>
         <Input ref={titleRef} className={styles.input} type="text" name="title" margin={"10px"} placeholder="title" required />
         <Textarea ref={descriptionRef} className={styles.textarea} name="description" margin={"10px"} placeholder="description"></Textarea>
-        <Button name="create" margin={"10px"} type="submit">
-          create
+        <Button name="update" margin={"10px"} type="submit">
+          update
         </Button>
       </form>
     </div>

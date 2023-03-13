@@ -13,9 +13,6 @@ export const screenSlice = createSlice({
   reducers: {
     setScreen: (state, action) => {
       state.screen = action.payload;
-
-      console.log("=======================");
-      console.log(action.payload);
     },
     setExtend: (state, action) => {
       state.screen = action.payload;

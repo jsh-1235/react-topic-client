@@ -17,6 +17,25 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(window.innerWidth);
+
+    if (window.innerWidth < 720) {
+      dispatch(
+        setScreen({
+          isMobile: true,
+        })
+      );
+    } else {
+      dispatch(
+        setScreen({
+          isMobile: false,
+        })
+      );
+    }
+    return () => {};
+  }, [dispatch]);
+
+  useEffect(() => {
     window.matchMedia("(max-width: 720px)").addEventListener("change", (e) => {
       dispatch(
         setScreen({

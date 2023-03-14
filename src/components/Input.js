@@ -19,12 +19,12 @@ const CONTAINER = styled.input`
 
   @media (hover: hover) {
     &:hover {
-      outline: 3px solid var(--theme-component-hover);
+      outline: 1px solid var(--theme-component-hover);
     }
   }
 
   &:focus {
-    outline: 3px solid var(--theme-component-active);
+    outline: 2px solid var(--theme-component-active);
     transition-property: outline;
     transition-duration: 0.5s;
   }

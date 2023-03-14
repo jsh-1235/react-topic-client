@@ -24,7 +24,7 @@ const CONTAINER = styled.textarea`
   }
 
   &:focus {
-    outline: 3px solid var(--theme-component-active);
+    outline: 2px solid var(--theme-component-active);
     transition-property: outline;
     transition-duration: 0.5s;
   }

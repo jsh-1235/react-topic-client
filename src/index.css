@@ -4,7 +4,7 @@
   /* --page-default-width: auto; */
   --page-default-width: 1280px;
   --page-width: var(--page-default-width);
-  --page-font-min-size: 4px;
+  --page-font-min-size: 10px;
   --page-font-max-size: 16px;
   --page-font-size: var(--page-font-max-size);
   --theme-component-color: #8093f1;
@@ -42,7 +42,7 @@ a {
 @media (max-width: 1280px) {
   :root {
     --page-width: 100%;
-    --page-font-size: clamp(var(--page-font-min-size), 2vw, var(--page-font-max-size));
+    --page-font-size: clamp(var(--page-font-min-size), 5vw, var(--page-font-max-size));
   }
 }
 

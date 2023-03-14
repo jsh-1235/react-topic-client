@@ -28,7 +28,7 @@ function Content({ topics, handleControl }, ref) {
   const html = topics?.contents?.map((content) => {
     return (
       <tr key={content.id}>
-        <td>{content.title}</td>
+        <td className={styles.id}>{content.title}</td>
         <td>{content.description}</td>
         <td>{content.date}</td>
         <td>

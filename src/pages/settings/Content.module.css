@@ -1,7 +1,8 @@
 :root {
-  --border-color-table: white;
-  --bg-color-th: #274690;
-  --bg-color-td: #576ca8;
+  --border-table-color: white;
+  --bg-table-th-color: #274690;
+  --bg-table-td-color: #576ca8;
+  --bg-table-td-hover: #b6465f;
 }
 
 .container {
@@ -21,25 +22,29 @@
 }
 
 .container table {
-  border: 1px solid var(--border-color-table);
+  border: 1px solid var(--border-table-color);
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 .container th, td {
-  border: 0.5px solid var(--border-color-table);
+  border: 0.5px solid var(--border-table-color);
 }
 
 .container th {
-  background-color: var(--bg-color-th);
+  background-color: var(--bg-table-th-color);
   font-size: calc(var(--page-font-size) * 1);
   text-transform: uppercase;
   padding: 10px;
 }
 
 .container td {
-  background-color: var(--bg-color-td);
+  background-color: var(--bg-table-td-color);
   font-size: calc(var(--page-font-size) * 0.9);
   text-align: center;
   padding: 10px;
+}
+
+.id:hover {
+  background-color: var(--bg-table-td-hover);
 }

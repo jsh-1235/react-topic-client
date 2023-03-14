@@ -3,8 +3,10 @@ import styles from "./Container.module.css";
 import React, { useState, useEffect, Suspense } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 
+import { saveAs } from "file-saver";
+
 import { useSelector, useDispatch } from "react-redux";
-import { load, remove } from "../../store/slices/topicSlice";
+import { load, remove, clear } from "../../store/slices/topicSlice";
 
 import List from "./List";
 import Creator from "./Creator";
@@ -12,15 +14,15 @@ import Updater from "./Updater";
 import Content from "./Content";
 import ImageButton from "../../components/ImageButton";
 
-import { AiOutlineArrowLeft, AiFillPlusCircle, AiFillMinusCircle, AiFillEdit } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiFillPlusCircle, AiFillMinusCircle, AiFillEdit, AiOutlineDownload, AiFillPrinter } from "react-icons/ai";
 
 export default function Container() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const { screen } = useSelector((state) => state.screen);
-  const [color, setColor] = useState("red");
-  const [fontSize, setFontSize] = useState("1rem");
+  const [color, setColor] = useState("white");
+  const [fontSize, setFontSize] = useState("1.75rem");
 
   const { topics } = useSelector((state) => state.topics);
 
@@ -35,13 +37,35 @@ export default function Container() {
   }, [topics]);
 
   useEffect(() => {
-    setFontSize(screen.isMobile ? "1.5rem" : "2rem");
-    setColor(screen.isMobile ? getComputedStyle(document.documentElement).getPropertyValue("--theme-component-color") : "white");
+    setFontSize(screen.isMobile ? "1.5rem" : "1.75rem");
+    // setColor(screen.isMobile ? getComputedStyle(document.documentElement).getPropertyValue("--theme-component-color") : "white");
   }, [screen]);
 
   useEffect(() => {
     console.log("state", state);
   }, [state]);
+
+  const download = (contents) => {
+    const blob = new Blob([JSON.stringify(contents)], { type: "text/plain;charset=utf-8" });
+
+    saveAs(blob, `topics_${new Date().toLocaleString()}.json`);
+  };
+
+  const print = (contents) => {
+    const popup = window.open("", "print", "popup");
+
+    popup.document.write("<title>Topics</title>");
+
+    popup.document.writeln(`<pre>${JSON.stringify(topics.contents, null, 2)}</pre>`);
+
+    popup.document.close();
+
+    popup.focus();
+
+    popup.print();
+
+    popup.close();
+  };
 
   const handleClick = (name, e) => {
     console.log(name, e.target.parentElement, topics.current);
@@ -56,6 +80,13 @@ export default function Container() {
       topics.current && topics.current !== -1 && dispatch(remove(topics.current));
 
       navigate("/topics");
+    } else if (name === "clear") {
+      dispatch(clear());
+      navigate("/topics");
+    } else if (name === "download") {
+      download(topics.contents);
+    } else if (name === "print") {
+      print(topics.contents);
     }
   };
 
@@ -64,24 +95,34 @@ export default function Container() {
       <List />
       <div className={styles.content}>
         <div className={styles.menu}>
-          <ImageButton name="back" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "back")}>
-            <AiOutlineArrowLeft />
-          </ImageButton>
-          {topics.mode === "read" && (
-            <ImageButton name="create" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "create")}>
-              <AiFillPlusCircle />
+          <div>
+            <ImageButton name="back" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "back")}>
+              <AiOutlineArrowLeft />
             </ImageButton>
-          )}
-          {topics.current !== undefined && (
-            <ImageButton name="update" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "update")}>
-              <AiFillEdit />
+            <ImageButton name="download" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "download")}>
+              <AiOutlineDownload />
             </ImageButton>
-          )}
-          {topics.current !== undefined && (
-            <ImageButton name="remove" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "remove")}>
-              <AiFillMinusCircle />
+            <ImageButton name="print" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "print")}>
+              <AiFillPrinter />
             </ImageButton>
-          )}
+          </div>
+          <div>
+            {topics.mode === "read" && (
+              <ImageButton name="create" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "create")}>
+                <AiFillPlusCircle />
+              </ImageButton>
+            )}
+            {topics.current !== undefined && (
+              <ImageButton name="update" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "update")}>
+                <AiFillEdit />
+              </ImageButton>
+            )}
+            {topics.current !== undefined && (
+              <ImageButton name="remove" color={color} fontSize={fontSize} onClick={handleClick.bind(this, "remove")}>
+                <AiFillMinusCircle />
+              </ImageButton>
+            )}
+          </div>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>

@@ -21,13 +21,55 @@
 }
 
 .menu {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  gap: 0px 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: #1b264f;
+  padding: 5px;
+}
+
+.menu>div:first-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
   align-items: center;
-  justify-items: start;
-  background-color: #1b264f;
-  padding: 5px;
+}
+
+.menu>div:first-child>div {
+  margin-right: 20px;
+}
+
+.menu>div:first-child>div:nth-child(1) {
+  animation-duration: 2s;
+  animation-name: flicker;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes flicker {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.menu>div:last-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu>div:last-child>div {
+  margin-left: 20px;
 }

@@ -25,6 +25,7 @@
 - npm i react-image-gallery
 - npm i @paypal/react-paypal-js
 - npm install socket.io-client
+- npm install file-saver
 
 ## Dev dependencies
 

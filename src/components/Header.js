@@ -35,8 +35,6 @@ export default function Header() {
   }, [dispatch, location.pathname]);
 
   const handleExtend = (e) => {
-    // navigate("/");
-
     dispatch(setExtend({ ...screen, extended: !screen.extended }));
 
     console.log(screen);
@@ -52,14 +50,13 @@ export default function Header() {
         </div>
         <div>
           <Linker url="/" size={1.5}>
-            {/* <AiOutlineCodeSandbox className={styles.icon} /> */}
             {url.title}
           </Linker>
         </div>
         <div>
           <span>jsh</span>
           <IconButton color={"white"} fontSize={"1.5rem"}>
-            <AiOutlineLogin />
+            <AiOutlineLogin onClick={(e) => navigate("/login")} />
           </IconButton>
         </div>
       </div>

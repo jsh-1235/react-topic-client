@@ -10,7 +10,7 @@ const CONTAINER = styled.textarea`
   border-radius: ${(props) => props.corner || "inherit"};
   color: black;
   font-size: ${(props) => props.fontSize || "inherit"};
-  padding: ${(props) => props.padding || "0.5rem"};
+  padding: ${(props) => props.padding || "inherit"};
   margin: ${(props) => props.margin || "inherit"};
 
   @media (max-width: 1280px) {
@@ -24,7 +24,7 @@ const CONTAINER = styled.textarea`
   }
 
   &:focus {
-    outline: 2px solid var(--theme-component-active);
+    outline: 3px solid var(--theme-component-active);
     transition-property: outline;
     transition-duration: 0.5s;
   }

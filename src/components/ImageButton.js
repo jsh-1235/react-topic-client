@@ -13,6 +13,9 @@ const CONTAINER = styled.div`
 
     &:hover {
       cursor: pointer;
+      color: var(--theme-component-hover);
+      transition-property: color;
+      transition-duration: 0.5s;
     }
 
     &:active {

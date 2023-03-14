@@ -10,7 +10,7 @@ const CONTAINER = styled.input`
   border-radius: ${(props) => props.corner || "inherit"};
   color: black;
   font-size: ${(props) => props.fontSize || "inherit"};
-  padding: ${(props) => props.padding || "0.5rem"};
+  padding: ${(props) => props.padding || "inherit"};
   margin: ${(props) => props.margin || "inherit"};
 
   @media (max-width: 1280px) {
@@ -43,7 +43,7 @@ const CONTAINER = styled.input`
 `;
 
 function Input(props, ref) {
-  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} disabled={props.disabled} onClick={props.onClick} />;
+  return <CONTAINER ref={ref} name={props.name} type={props.type} width={props.width} height={props.height} fontSize={props.fontSize} corner={props.corner} padding={props.padding} margin={props.margin} placeholder={props.placeholder} required={props.required} disabled={props.disabled} onClick={props.onClick} onChange={props.onChange} />;
 }
 
 export default forwardRef(Input);

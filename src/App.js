@@ -10,6 +10,7 @@ import Header from "./components/Header";
 
 const Home = React.lazy(() => import("./pages/home/Home"));
 const Topics = React.lazy(() => import("./pages/topics/Container"));
+const Settings = React.lazy(() => import("./pages/settings/Container"));
 const About = React.lazy(() => import("./pages/about/About"));
 const NotFound = React.lazy(() => import("./pages/error/NotFound"));
 
@@ -59,6 +60,9 @@ function App() {
               <Route path="/" element={<Home title="HOME" />} />
               <Route path="/topics/*" element={<Topics pathname="/topics" />}>
                 <Route path=":id" element={<Topics />} />
+              </Route>
+              <Route path="/settings/*" element={<Settings pathname="/settings" />}>
+                <Route path=":id" element={<Settings />} />
               </Route>
               <Route path="/about" element={<About />} />
               <Route path="/none" element={<NotFound />} />

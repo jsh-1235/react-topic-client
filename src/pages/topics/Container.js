@@ -46,7 +46,7 @@ export default function Container() {
   }, [state]);
 
   const download = (contents) => {
-    const blob = new Blob([JSON.stringify(contents)], { type: "text/plain;charset=utf-8" });
+    const blob = new Blob([JSON.stringify(contents)], { type: "text/plain; charset=utf-8" });
 
     saveAs(blob, `topics_${new Date().toLocaleString()}.json`);
   };
@@ -72,6 +72,10 @@ export default function Container() {
 
     if (name === "back") {
       navigate(-1);
+    } else if (name === "download") {
+      download(topics.contents);
+    } else if (name === "print") {
+      print(topics.contents);
     } else if (name === "create") {
       navigate("/topics/create");
     } else if (name === "update") {
@@ -83,10 +87,6 @@ export default function Container() {
     } else if (name === "clear") {
       dispatch(clear());
       navigate("/topics");
-    } else if (name === "download") {
-      download(topics.contents);
-    } else if (name === "print") {
-      print(topics.contents);
     }
   };
 

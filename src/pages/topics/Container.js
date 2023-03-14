@@ -21,7 +21,7 @@ export default function Container() {
   const { state } = useLocation();
 
   const { screen } = useSelector((state) => state.screen);
-  const [color, setColor] = useState("white");
+  const [color] = useState("white");
   const [fontSize, setFontSize] = useState("1.75rem");
 
   const { topics } = useSelector((state) => state.topics);
@@ -38,7 +38,6 @@ export default function Container() {
 
   useEffect(() => {
     setFontSize(screen.isMobile ? "1.5rem" : "1.75rem");
-    // setColor(screen.isMobile ? getComputedStyle(document.documentElement).getPropertyValue("--theme-component-color") : "white");
   }, [screen]);
 
   useEffect(() => {

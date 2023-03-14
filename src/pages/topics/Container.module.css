@@ -40,7 +40,7 @@
   align-items: center;
 }
 
-.menu>div:first-child>div {
+.menu>div:first-child>span {
   margin-right: 20px;
 }
 
@@ -70,6 +70,6 @@
   align-items: center;
 }
 
-.menu>div:last-child>div {
+.menu>div:last-child>span {
   margin-left: 20px;
 }

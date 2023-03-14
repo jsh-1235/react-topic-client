@@ -6,11 +6,11 @@ import { useParams } from "react-router";
 
 import { useSelector } from "react-redux";
 
-import { AiFillPlusCircle } from "react-icons/ai";
+import { AiFillMinusCircle } from "react-icons/ai";
 
 import ImageButton from "../../components/ImageButton";
 
-function Content({ topics }, ref) {
+function Content({ topics, handleControl }, ref) {
   const { id } = useParams();
 
   const { screen } = useSelector((state) => state.screen);
@@ -25,10 +25,6 @@ function Content({ topics }, ref) {
     setFontSize(screen.isMobile ? "1rem" : "1.5rem");
   }, [screen]);
 
-  // const { topics } = useSelector((state) => {
-  //   return state.topics;
-  // });
-
   const html = topics?.contents?.map((content) => {
     return (
       <tr key={content.id}>
@@ -36,15 +32,13 @@ function Content({ topics }, ref) {
         <td>{content.description}</td>
         <td>{content.date}</td>
         <td>
-          <ImageButton name="create">
-            <AiFillPlusCircle color={"white"} fontSize={fontSize} />
+          <ImageButton name="remove" onClick={handleControl.bind(this, content.id)}>
+            <AiFillMinusCircle color={"white"} fontSize={fontSize} />
           </ImageButton>
         </td>
       </tr>
     );
   });
-
-  console.log(html);
 
   return (
     <div ref={ref} className={styles.container}>

@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { saveAs } from "file-saver";
 
 import { useSelector, useDispatch } from "react-redux";
-import { load } from "../../store/slices/topicSlice";
+import { load, remove } from "../../store/slices/topicSlice";
 
 import Content from "./Content";
 import ImageButton from "../../components/ImageButton";
@@ -35,7 +35,7 @@ export default function Container() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("topics", topics);
+    setFiltered(topics);
   }, [topics]);
 
   useEffect(() => {
@@ -138,15 +138,31 @@ export default function Container() {
       download(topics.contents);
     } else if (name === "print") {
       print();
+    } else if (name === "search") {
+      searchRef.current.value = "";
+
+      filtering(searchRef.current.value);
+    }
+  };
+
+  const filtering = (value) => {
+    if (value) {
+      setFiltered((prev) => {
+        return { ...topics, contents: topics.contents.filter((content) => content.title === value) };
+      });
+    } else {
+      setFiltered(topics);
     }
   };
 
   const handleSearch = (e) => {
-    console.log(e.target.value);
+    filtering(e.target.value);
+  };
 
-    setFiltered((prev) => {
-      return { ...topics, contents: topics.contents.filter((content) => content.title === e.target.value) };
-    });
+  const handleControl = (id, e) => {
+    console.log(id, topics.current);
+
+    dispatch(remove(id));
   };
 
   return (
@@ -170,7 +186,7 @@ export default function Container() {
           </ImageButton>
         </div>
       </div>
-      <Content topics={filtered} ref={tableRef} />
+      <Content ref={tableRef} topics={filtered} handleControl={handleControl} />
     </div>
   );
 }

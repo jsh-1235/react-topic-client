@@ -42,7 +42,7 @@ a {
 @media (max-width: 1280px) {
   :root {
     --page-width: 100%;
-    --page-font-size: clamp(var(--page-font-min-size), 5vw, var(--page-font-max-size));
+    --page-font-size: clamp(var(--page-font-min-size), 2vw, var(--page-font-max-size));
   }
 }
 
